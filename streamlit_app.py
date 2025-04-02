@@ -1,31 +1,32 @@
-import streamlit as st
-import numpy as np
-import pandas as pd
-import altair as alt
+import streamlit as s
 
+from datetime import time, datetime
 
-st.header("st.write")
+s.header("s.Slider")
 
-st.subheader("Display Text")
-st.write("Hello world! 👾")
+s.subheader('Slider')
 
-st.subheader("Display numbers")
-st.write(1234)
+age = s.slider('Ages?', 0, 100, 25)
+s.write(f"I'm in {age} old")
 
-st.subheader("Display DataFrame")
-df = pd.DataFrame({
-    'first column': [1,2,3,4],
-    'second column': [10,20,30,40]
-})
-st.write(df)
+s.subheader('Range slider')
 
-st.subheader("Accept multiple arguments")
-st.write('Bellow is data frame', df, 'Above is dataframe')
+values = s.slider(
+     'Select a range of values',0, 10)
+s.write('Values:', values)
 
-st.subheader("Display Chart")
-df2 = pd.DataFrame(
-    np.random.randn(5, 3),
-    columns=['a', 'b', 'c'])
-c = alt.Chart(df2).mark_circle().encode(
-    x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
-st.write(c)
+s.subheader('Range time slider')
+
+appointment = s.slider(
+    'Schedule appointment',
+    value=(time(11,30), time(12,45))
+)
+s.write(f"Your appoinment {appointment}")
+
+s.subheader('Datetime slider')
+
+start_time = s.slider(
+     "When do you start?",
+     value=datetime(2025, 12, 1, 0, 0 ),
+     format="DD/MM/YY - hh:mm")
+s.write("Start time:", start_time)
